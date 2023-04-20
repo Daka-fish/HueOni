@@ -18,4 +18,6 @@ public class ConfigManager {
 
     public static int getCountdownSeconds(){return config.getInt("countdown-seconds");}
 
+    public static int getTimerSeconds(){return config.getInt("timer-seconds");}
+
 }
