@@ -1,0 +1,7 @@
+name: TagGame
+version: '${project.version}'
+main: net.tv.twitch.chrono_fish.taggame.TagGame
+api-version: 1.19
+commands:
+  t:
+
