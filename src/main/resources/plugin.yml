@@ -1,0 +1,4 @@
+name: HueOni
+version: '${project.version}'
+main: net.tv.twitch.chrono_fish.hueoni.HueOn
+api-version: '1.20'
