@@ -6,7 +6,11 @@ public class HueOniGame {
         Finished
     }
 
-    GameState gameState = GameState.Finished;
+    GameState gameState;
+
+    HueOniGame(){
+        this.gameState = GameState.Finished;
+    }
 
     public GameState getGameState() {
         return gameState;
