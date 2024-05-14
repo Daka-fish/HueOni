@@ -9,10 +9,13 @@ public class HueOniPlayer {
     String playerName;
     Inventory inv;
 
+    PlayerState state;
+
     HueOniPlayer(Player player){
         this.player = player;
         this.playerName = player.getName();
         this.inv = player.getInventory();
+        this.state = PlayerState.Runner;
     }
 
     public Player getPlayer() {
