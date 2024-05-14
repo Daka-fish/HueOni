@@ -6,10 +6,12 @@ import org.bukkit.inventory.Inventory;
 public class HueOniPlayer {
 
     Player player;
+    String playerName;
     Inventory inv;
 
     HueOniPlayer(Player player){
         this.player = player;
+        this.playerName = player.getName();
         this.inv = player.getInventory();
     }
 
