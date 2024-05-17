@@ -4,11 +4,15 @@ import org.bukkit.ChatColor;
 
 public enum PlayerState {
     Runner(ChatColor.AQUA),
-    Killer(ChatColor.RED);
+    Chaser(ChatColor.RED);
 
     private ChatColor color;
 
     PlayerState(ChatColor color){
         this.color = color;
+    }
+
+    public ChatColor getColor() {
+        return color;
     }
 }
