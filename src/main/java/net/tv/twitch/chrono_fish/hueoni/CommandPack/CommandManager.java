@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 public class CommandManager {
     static HueOniGame hueOniGame = new HueOniGame();
+
     public static void hueOni(Player sender, String[] args){
         switch(args[0]){
             case "start":
@@ -25,14 +26,29 @@ public class CommandManager {
                     sender.sendMessage(ChatColor.RED+"/hueOni oni {playerName}");
                     return;
                 }
-                Player target = Bukkit.getPlayerExact(args[1]);
-                if(target == null){
+                Player oniTarget = Bukkit.getPlayerExact(args[1]);
+                if(oniTarget == null){
                     sender.sendMessage(ChatColor.RED+"プレイヤーが見つかりません!");
                     return;
                 }
-                sender.sendMessage(target.getName()+"を鬼にしました。");
-                hueOniGame.addOni(target);
-                hueOniGame.putToMap(target, PlayerState.Chaser);
+                sender.sendMessage(oniTarget.getName()+"を鬼にしました。");
+                hueOniGame.addOni(oniTarget);
+                hueOniGame.putToMap(oniTarget, PlayerState.Chaser);
+                break;
+
+            case "nige":
+                if(args.length<2){
+                    sender.sendMessage(ChatColor.RED+"/hueOni nige {playerName}");
+                    return;
+                }
+                Player nigeTarget = Bukkit.getPlayerExact(args[1]);
+                if(nigeTarget == null){
+                    sender.sendMessage(ChatColor.RED+"プレイヤーが見つかりません!");
+                    return;
+                }
+                sender.sendMessage(nigeTarget.getName()+"を逃げにしました。");
+                hueOniGame.addRunner(nigeTarget);
+                hueOniGame.putToMap(nigeTarget, PlayerState.Runner);
                 break;
         }
     }
