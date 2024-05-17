@@ -1,5 +1,6 @@
 package net.tv.twitch.chrono_fish.hueoni.GamePack;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -37,5 +38,9 @@ public class HueOniGame {
 
     public void putToMap(Player player, PlayerState state){map.put(player,state);}
 
-    public void start(){}
+    public void start(){
+        for(Player player : Bukkit.getOnlinePlayers()){
+            if(map.containsKey(player)){map.put(player,PlayerState.Runner);}
+        }
+    }
 }
