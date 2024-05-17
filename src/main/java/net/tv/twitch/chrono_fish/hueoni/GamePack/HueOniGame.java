@@ -1,6 +1,9 @@
 package net.tv.twitch.chrono_fish.hueoni.GamePack;
 
+import org.bukkit.entity.Player;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class HueOniGame {
@@ -10,10 +13,12 @@ public class HueOniGame {
     }
 
     GameState gameState;
-    List<HueOniPlayer> runnerList = new ArrayList<>();
-    List<HueOniPlayer> chaserList = new ArrayList<>();
+    List<Player> runnerList = new ArrayList<>();
+    List<Player> chaserList = new ArrayList<>();
 
-    HueOniGame(){
+    HashMap<Player,PlayerState> map = new HashMap<>();
+
+    public HueOniGame(){
         this.gameState = GameState.Finished;
     }
 
@@ -24,9 +29,13 @@ public class HueOniGame {
         this.gameState = gameState;
     }
 
-    public void putRunList(HueOniPlayer player){runnerList.add(player);}
-    public void putKillList(HueOniPlayer player){chaserList.add(player);}
+    public void addRunner(Player player){runnerList.add(player);}
+    public void addOni(Player player){chaserList.add(player);}
 
     public int getNumberOfRunners(){return runnerList.size();}
     public int getNumberOfChasers(){return chaserList.size();}
+
+    public void putToMap(Player player, PlayerState state){map.put(player,state);}
+
+    public void start(){}
 }
