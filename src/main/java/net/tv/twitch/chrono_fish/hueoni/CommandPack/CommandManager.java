@@ -19,6 +19,10 @@ public class CommandManager {
                 }
                 break;
 
+            case "check":
+                sender.sendMessage(""+hueOniGame.getNumberOfChasers());
+                break;
+
             case "oni":
                 if(args.length<2){
                     sender.sendMessage(ChatColor.RED+"/hueOni oni {playerName}");
