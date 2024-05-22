@@ -13,12 +13,10 @@ public class CommandManager {
         switch(args[0]){
             case "start":
                 sender.sendMessage("ゲームを開始します");
-                hueOniGame = new HueOniGame();
                 if(hueOniGame.getNumberOfChasers()<2){
                     sender.sendMessage(ChatColor.RED+"鬼の人数が足りません!");
                     return;
                 }
-                hueOniGame.start();
                 break;
 
             case "oni":
@@ -32,7 +30,6 @@ public class CommandManager {
                     return;
                 }
                 sender.sendMessage(oniTarget.getName()+"を鬼にしました。");
-                hueOniGame.addOni(oniTarget);
                 hueOniGame.putToMap(oniTarget, PlayerState.Chaser);
                 break;
 
@@ -47,7 +44,6 @@ public class CommandManager {
                     return;
                 }
                 sender.sendMessage(nigeTarget.getName()+"を逃げにしました。");
-                hueOniGame.addRunner(nigeTarget);
                 hueOniGame.putToMap(nigeTarget, PlayerState.Runner);
                 break;
         }
