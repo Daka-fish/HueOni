@@ -30,6 +30,13 @@ public class HueOniGame {
         this.gameState = gameState;
     }
 
+    public List<Player> getRunnerList() {
+        return runnerList;
+    }
+    public List<Player> getChaserList() {
+        return chaserList;
+    }
+
     public int getNumberOfRunners(){return runnerList.size();}
     public int getNumberOfChasers(){return chaserList.size();}
 
