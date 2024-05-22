@@ -1,17 +1,18 @@
 package net.tv.twitch.chrono_fish.hueoni;
 
+import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class HueOn extends JavaPlugin {
 
+    HueOniGame hueOniGame;
+
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
+        hueOniGame = new HueOniGame();
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+    public HueOniGame getGame(){
+        return hueOniGame;
     }
 }
