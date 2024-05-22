@@ -1,16 +1,15 @@
 package net.tv.twitch.chrono_fish.hueoni.CommandPack;
 
-import net.kyori.adventure.text.format.NamedTextColor;
 import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
 import net.tv.twitch.chrono_fish.hueoni.GamePack.PlayerState;
+import net.tv.twitch.chrono_fish.hueoni.HueOni;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class CommandManager {
-    static HueOniGame hueOniGame = new HueOniGame();
-
     public static void hueOni(Player sender, String[] args){
+        HueOniGame hueOniGame = HueOni.getGame();
         switch(args[0]){
             case "start":
                 sender.sendMessage("ゲームを開始します");
