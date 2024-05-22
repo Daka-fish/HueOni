@@ -1,11 +1,11 @@
 package net.tv.twitch.chrono_fish.hueoni.GamePack;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HueOniGame {
     public enum GameState{
@@ -14,8 +14,6 @@ public class HueOniGame {
     }
 
     GameState gameState;
-    List<Player> runnerList = new ArrayList<>();
-    List<Player> chaserList = new ArrayList<>();
 
     HashMap<Player,PlayerState> map = new HashMap<>();
 
@@ -30,15 +28,28 @@ public class HueOniGame {
         this.gameState = gameState;
     }
 
-    public List<Player> getRunnerList() {
-        return runnerList;
-    }
-    public List<Player> getChaserList() {
-        return chaserList;
+    public int getNumberOfChasers(){
+        int count = 0;
+        for(Map.Entry<Player,PlayerState> entry : map.entrySet()){
+            if(entry.getValue().equals(PlayerState.Chaser)) count += 1;
+        }
+        return count;
     }
 
-    public int getNumberOfRunners(){return runnerList.size();}
-    public int getNumberOfChasers(){return chaserList.size();}
+    public boolean RunnerExist(){
+        for(Map.Entry<Player,PlayerState> entry : map.entrySet()){
+            if(entry.getValue().equals(PlayerState.Runner)) return true;
+        }
+        return false;
+    }
+
+    public HashMap<Player, PlayerState> getMap() {
+        return map;
+    }
+
+    public PlayerState getPlayerState(Player player){
+        return map.get(player);
+    }
 
     public void putToMap(Player player, PlayerState state){map.put(player,state);}
 }
