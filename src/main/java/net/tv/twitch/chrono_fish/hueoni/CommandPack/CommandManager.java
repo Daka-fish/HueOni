@@ -18,6 +18,7 @@ public class CommandManager {
                         return;
                     }
                     sender.sendMessage("ゲームを開始します");
+                    hueOniGame.setGameState(HueOniGame.GameState.Running);
                 }
                 break;
 
