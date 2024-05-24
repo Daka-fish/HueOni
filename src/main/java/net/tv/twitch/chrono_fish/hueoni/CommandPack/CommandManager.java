@@ -12,13 +12,13 @@ public class CommandManager {
         HueOniGame hueOniGame = HueOni.getGame();
         switch(args[0]){
             case "start":
-                sender.sendMessage("ゲームを開始します");
-                if(hueOniGame.getNumberOfChasers() < 2){
-                    sender.sendMessage(ChatColor.RED+"鬼の数が足りません(あと?人)");
+                if(hueOniGame.getGameState().equals(HueOniGame.GameState.Finished)){
+                    if(hueOniGame.countChasers() < 2){
+                        sender.sendMessage(ChatColor.RED+"鬼の数が足りません(あと?人)");
+                        return;
+                    }
+                    sender.sendMessage("ゲームを開始します");
                 }
-                break;
-
-            case "check":
                 break;
 
             case "oni":
@@ -26,13 +26,13 @@ public class CommandManager {
                     sender.sendMessage(ChatColor.RED+"/hueOni oni {playerName}");
                     return;
                 }
-                Player oniTarget = Bukkit.getPlayerExact(args[1]);
-                if(oniTarget == null){
+                Player oTarget = Bukkit.getPlayerExact(args[1]);
+                if(oTarget == null){
                     sender.sendMessage(ChatColor.RED+"プレイヤーが見つかりません!");
                     return;
                 }
-                sender.sendMessage(oniTarget.getName()+"を鬼にしました。");
-                hueOniGame.putToMap(oniTarget, PlayerState.Chaser);
+                sender.sendMessage(oTarget.getName()+"を鬼にしました。");
+                hueOniGame.getMap().put(oTarget,PlayerState.Chaser);
                 break;
 
             case "nige":
@@ -40,13 +40,16 @@ public class CommandManager {
                     sender.sendMessage(ChatColor.RED+"/hueOni nige {playerName}");
                     return;
                 }
-                Player nigeTarget = Bukkit.getPlayerExact(args[1]);
-                if(nigeTarget == null){
+                Player nTarget = Bukkit.getPlayerExact(args[1]);
+                if(nTarget == null){
                     sender.sendMessage(ChatColor.RED+"プレイヤーが見つかりません!");
                     return;
                 }
-                sender.sendMessage(nigeTarget.getName()+"を逃げにしました。");
-                hueOniGame.putToMap(nigeTarget, PlayerState.Runner);
+                sender.sendMessage(nTarget.getName()+"を逃げにしました。");
+                hueOniGame.getMap().put(nTarget,PlayerState.Runner);
+                break;
+
+            case "check":
                 break;
         }
     }
