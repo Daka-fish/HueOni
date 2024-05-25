@@ -29,10 +29,10 @@ public class CommandManager {
                 }
                 Player oTarget = Bukkit.getPlayerExact(args[1]);
                 if(oTarget == null){
-                    sender.sendMessage(ChatColor.RED+"プレイヤーが見つかりません!");
+                    sender.sendMessage(ChatColor.RED+args[1]+"が見つかりません!");
                     return;
                 }
-                sender.sendMessage(oTarget.getName()+"を鬼にしました。");
+                sender.sendMessage(oTarget.getName()+"を鬼にしました");
                 hueOniGame.getMap().put(oTarget,PlayerState.Chaser);
                 break;
 
@@ -43,10 +43,10 @@ public class CommandManager {
                 }
                 Player nTarget = Bukkit.getPlayerExact(args[1]);
                 if(nTarget == null){
-                    sender.sendMessage(ChatColor.RED+"プレイヤーが見つかりません!");
+                    sender.sendMessage(ChatColor.RED+args[1]+"が見つかりません!");
                     return;
                 }
-                sender.sendMessage(nTarget.getName()+"を逃げにしました。");
+                sender.sendMessage(nTarget.getName()+"を逃げにしました");
                 hueOniGame.getMap().put(nTarget,PlayerState.Runner);
                 break;
 
