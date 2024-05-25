@@ -1,6 +1,7 @@
 package net.tv.twitch.chrono_fish.hueoni.GamePack;
 
 import net.tv.twitch.chrono_fish.hueoni.HueOni;
+import net.tv.twitch.chrono_fish.hueoni.HueOniScoreBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,7 +34,9 @@ public class HueOniEvent implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
-        HueOni.getGame().getMap().put(e.getPlayer(),PlayerState.Runner);
+        Player player = e.getPlayer();
+        HueOni.getGame().getMap().put(player,PlayerState.Runner);
+        player.setScoreboard(new HueOniScoreBoard(player).getBoard());
     }
 
     public PlayerState getPlayerState(Player player){
