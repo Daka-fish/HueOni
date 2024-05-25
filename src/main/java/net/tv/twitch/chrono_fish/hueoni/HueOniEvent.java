@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 public class HueOniEvent implements Listener {
 
@@ -29,6 +30,11 @@ public class HueOniEvent implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent e){
+        HueOni.getGame().getMap().put(e.getPlayer(),PlayerState.Runner);
     }
 
     public PlayerState getPlayerState(Player player){
