@@ -14,7 +14,8 @@ public class CommandManager {
             case "start":
                 if(hueOniGame.getGameState().equals(HueOniGame.GameState.Finished)){
                     if(hueOniGame.countChasers() < 2){
-                        sender.sendMessage(ChatColor.RED+"鬼の数が足りません(あと?人)");
+                        sender.sendMessage(ChatColor.RED+"鬼の数が足りません" +
+                                        "(あと"+(hueOniGame.getNumberOfFirstOni()- hueOniGame.countChasers())+"人)");
                         return;
                     }
                     sender.sendMessage("ゲームを開始します");
