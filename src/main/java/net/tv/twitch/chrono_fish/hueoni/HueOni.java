@@ -1,6 +1,7 @@
 package net.tv.twitch.chrono_fish.hueoni;
 
 import net.tv.twitch.chrono_fish.hueoni.CommandPack.HueOniCommands;
+import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniEvent;
 import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
 import org.bukkit.plugin.java.JavaPlugin;
 
