@@ -12,10 +12,15 @@ public class HueOniGame {
     }
 
     private GameState gameState;
-    private HashMap<Player,PlayerState> map = new HashMap<>();
+    private HashMap<Player,PlayerState> map;
 
     public HueOniGame(){
         this.gameState = GameState.Finished;
+        map = new HashMap<>();
+    }
+
+    public int getNumberOfFirstOni() {
+        return 2;
     }
 
     public int countRunners(){
