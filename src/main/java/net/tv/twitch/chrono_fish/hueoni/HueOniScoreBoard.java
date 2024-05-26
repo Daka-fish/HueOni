@@ -3,7 +3,9 @@ package net.tv.twitch.chrono_fish.hueoni;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
+import net.tv.twitch.chrono_fish.hueoni.GamePack.PlayerState;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 
@@ -13,40 +15,49 @@ public class HueOniScoreBoard {
     private final Objective obj;
     private final Component boardName = Component.text("=Info=").decorate(TextDecoration.BOLD);
 
-    private final String timer = "+Timer";
-    private final String yourState = "+YourState";
-    private final String remainRunners = "+RemainRunners";
+    private final String timer = ChatColor.BOLD+"+Timer";
+    private final String yourState = ChatColor.BOLD+"+YourState";
+    private final String remainRunners = ChatColor.BOLD+"+RemainRunners";
 
     public HueOniScoreBoard(Player player){
         board = Bukkit.getScoreboardManager().getNewScoreboard();
         obj = board.registerNewObjective("sidebar", Criteria.DUMMY,boardName);
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
-        Score s = obj.getScore("");
-        s.setScore(0);
+        for (int i = 0; i < 4; i++) {
+            obj.getScore(generateSpace(i)).setScore(-3 * i);
+        }
         setScores(obj,player);
+    }
+
+    public void setScores(Objective objective, Player player){
+        HueOniGame hueOniGame = HueOni.getGame();
+        objective.getScore(timer).setScore(-1);
+        objective.getScore("   └???").setScore(-2);
+
+        objective.getScore(yourState).setScore(-4);
+        objective.getScore("  └" + hueOniGame.getMap().get(player).getName()).setScore(-5);
+
+        objective.getScore(remainRunners).setScore(-7);
+        objective.getScore("   └残り" + hueOniGame.countRunners() + "人").setScore(-8);
     }
 
     public Scoreboard getBoard() {
         return board;
     }
 
-    public void setScores(Objective objective, Player player){
-        HueOniGame hueOniGame = HueOni.getGame();
-        Score timerScore = objective.getScore(timer);
-        timerScore.setScore(-1);
-        Score time = objective.getScore("   └???");
-        time.setScore(-2);
-        Score stateScore = objective.getScore(yourState);
-        stateScore.setScore(-3);
-        Score state = objective.getScore("  └"+hueOniGame.getMap().get(player).name());
-        state.setScore(-4);
-        Score runnersScore = objective.getScore(remainRunners);
-        runnersScore.setScore(-5);
-        Score runnersCount = objective.getScore("   └"+"残り"+hueOniGame.countRunners()+"人");
-        runnersCount.setScore(-6);
+    public String generateSpace(int count){
+        StringBuilder spaces = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            spaces.append(' ');
+        }
+        return spaces.toString();
     }
 
-    public void timeManage(){
-
+    public void updateState(Player player){
+        HueOniGame hueOniGame = HueOni.getGame();
+        board.resetScores("  └" + PlayerState.Runner.getName());
+        board.resetScores("  └" + PlayerState.Chaser.getName());
+        Score state = obj.getScore("  └" + hueOniGame.getMap().get(player).getName());
+        state.setScore(-5);
     }
 }
