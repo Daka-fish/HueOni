@@ -36,7 +36,9 @@ public class HueOniEvent implements Listener {
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
         HueOni.getGame().getMap().put(player,PlayerState.Runner);
-        player.setScoreboard(new HueOniScoreBoard(player).getBoard());
+        HueOniScoreBoard board = new HueOniScoreBoard(player);
+        player.setScoreboard(board.getBoard());
+        HueOni.getScoreMap().put(player,board);
     }
 
     public PlayerState getPlayerState(Player player){
