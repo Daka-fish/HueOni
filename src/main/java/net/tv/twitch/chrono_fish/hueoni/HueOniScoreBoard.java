@@ -60,4 +60,10 @@ public class HueOniScoreBoard {
         Score state = obj.getScore("  └" + hueOniGame.getMap().get(player).getName());
         state.setScore(-5);
     }
+
+    public void updateRunners(Player player){
+        HueOniGame hueOniGame = HueOni.getGame();
+        board.resetScores("   └残り" + (hueOniGame.countRunners() +1) + "人");
+        obj.getScore("   └残り" + hueOniGame.countRunners() + "人").setScore(-8);
+    }
 }
