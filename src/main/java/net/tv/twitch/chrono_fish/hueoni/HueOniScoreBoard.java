@@ -11,17 +11,20 @@ import org.bukkit.scoreboard.*;
 
 public class HueOniScoreBoard {
 
+    private final Player player;
+
     private final Scoreboard board;
     private final Objective obj;
-    private final Component boardName = Component.text("=Info=").decorate(TextDecoration.BOLD);
 
     private final String timer = ChatColor.BOLD+"+Timer";
     private final String yourState = ChatColor.BOLD+"+YourState";
     private final String remainRunners = ChatColor.BOLD+"+RemainRunners";
 
     public HueOniScoreBoard(Player player){
+        this.player = player;
         board = Bukkit.getScoreboardManager().getNewScoreboard();
-        obj = board.registerNewObjective("sidebar", Criteria.DUMMY,boardName);
+        Component boardName = Component.text("=Info=").decorate(TextDecoration.BOLD);
+        obj = board.registerNewObjective("sidebar", Criteria.DUMMY, boardName);
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         for (int i = 0; i < 4; i++) {
             obj.getScore(generateSpace(i)).setScore(-3 * i);
@@ -53,16 +56,22 @@ public class HueOniScoreBoard {
         return spaces.toString();
     }
 
-    public void updateState(Player player){
+    public void updateState(){
         HueOniGame hueOniGame = HueOni.getGame();
         board.resetScores("  └" + PlayerState.Runner.getName());
         board.resetScores("  └" + PlayerState.Chaser.getName());
-        obj.getScore("  └" + hueOniGame.getMap().get(player).getName()).setScore(-5);;
+        obj.getScore("  └" + hueOniGame.getMap().get(this.player).getName()).setScore(-5);;
     }
 
-    public void updateRunners(Player player){
+    public void updateRunners(){
         HueOniGame hueOniGame = HueOni.getGame();
         board.resetScores("   └残り" + (hueOniGame.countRunners() +1) + "人");
+        board.resetScores("   └残り" + (hueOniGame.countRunners() -1) + "人");
         obj.getScore("   └残り" + hueOniGame.countRunners() + "人").setScore(-8);
+    }
+
+    public void updateAllScore(){
+        updateState();
+        updateRunners();
     }
 }

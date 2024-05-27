@@ -35,7 +35,7 @@ public class CommandManager {
                 }
                 sender.sendMessage(oTarget.getName()+"を鬼にしました");
                 hueOniGame.getMap().put(oTarget,PlayerState.Chaser);
-                HueOni.getScoreMap().get(oTarget).updateState(oTarget);
+                HueOni.getScoreMap().get(oTarget).updateAllScore();
                 break;
 
             case "nige":
@@ -50,7 +50,7 @@ public class CommandManager {
                 }
                 sender.sendMessage(nTarget.getName()+"を逃げにしました");
                 hueOniGame.getMap().put(nTarget,PlayerState.Runner);
-                HueOni.getScoreMap().get(nTarget).updateState(nTarget);
+                HueOni.getScoreMap().get(nTarget).updateAllScore();
                 break;
 
             case "check":

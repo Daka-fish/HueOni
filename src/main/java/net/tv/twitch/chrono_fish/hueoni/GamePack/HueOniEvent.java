@@ -23,6 +23,8 @@ public class HueOniEvent implements Listener {
             if(damagerState.equals(PlayerState.Chaser) && damagedState.equals(PlayerState.Runner)){
                 Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(damagedPlayer.getName()+"が捕まりました"));
                 HueOni.getGame().getMap().put(damagedPlayer,PlayerState.Chaser);
+                HueOni.getScoreMap().get(damagedPlayer).updateAllScore();
+                HueOni.getScoreMap().get(damagerPlayer).updateRunners();
 
                 if(HueOni.getGame().countRunners()==0){
                     Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage("ゲーム終了!"));
