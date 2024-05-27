@@ -57,8 +57,7 @@ public class HueOniScoreBoard {
         HueOniGame hueOniGame = HueOni.getGame();
         board.resetScores("  └" + PlayerState.Runner.getName());
         board.resetScores("  └" + PlayerState.Chaser.getName());
-        Score state = obj.getScore("  └" + hueOniGame.getMap().get(player).getName());
-        state.setScore(-5);
+        obj.getScore("  └" + hueOniGame.getMap().get(player).getName()).setScore(-5);;
     }
 
     public void updateRunners(Player player){
