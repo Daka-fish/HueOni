@@ -3,7 +3,7 @@ package net.tv.twitch.chrono_fish.hueoni;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
-import net.tv.twitch.chrono_fish.hueoni.GamePack.PlayerState;
+import net.tv.twitch.chrono_fish.hueoni.State.PlayerState;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

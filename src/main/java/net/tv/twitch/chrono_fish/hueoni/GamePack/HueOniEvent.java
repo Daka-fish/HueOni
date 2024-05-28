@@ -2,6 +2,7 @@ package net.tv.twitch.chrono_fish.hueoni.GamePack;
 
 import net.tv.twitch.chrono_fish.hueoni.HueOni;
 import net.tv.twitch.chrono_fish.hueoni.HueOniScoreBoard;
+import net.tv.twitch.chrono_fish.hueoni.State.PlayerState;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

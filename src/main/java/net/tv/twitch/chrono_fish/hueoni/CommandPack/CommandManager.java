@@ -1,7 +1,7 @@
 package net.tv.twitch.chrono_fish.hueoni.CommandPack;
 
 import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
-import net.tv.twitch.chrono_fish.hueoni.GamePack.PlayerState;
+import net.tv.twitch.chrono_fish.hueoni.State.PlayerState;
 import net.tv.twitch.chrono_fish.hueoni.HueOni;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

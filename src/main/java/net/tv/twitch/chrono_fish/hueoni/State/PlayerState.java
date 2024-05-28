@@ -1,4 +1,4 @@
-package net.tv.twitch.chrono_fish.hueoni.GamePack;
+package net.tv.twitch.chrono_fish.hueoni.State;
 
 import org.bukkit.ChatColor;
 
