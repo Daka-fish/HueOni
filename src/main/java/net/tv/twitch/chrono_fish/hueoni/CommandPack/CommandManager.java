@@ -1,6 +1,7 @@
 package net.tv.twitch.chrono_fish.hueoni.CommandPack;
 
 import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
+import net.tv.twitch.chrono_fish.hueoni.State.GameState;
 import net.tv.twitch.chrono_fish.hueoni.State.PlayerState;
 import net.tv.twitch.chrono_fish.hueoni.HueOni;
 import org.bukkit.Bukkit;
@@ -12,14 +13,14 @@ public class CommandManager {
         HueOniGame hueOniGame = HueOni.getGame();
         switch(args[0]){
             case "start":
-                if(hueOniGame.getGameState().equals(HueOniGame.GameState.Finished)){
+                if(hueOniGame.getGameState().equals(GameState.Finished)){
                     if(hueOniGame.countChasers() < 2){
                         sender.sendMessage(ChatColor.RED+"鬼の数が足りません" +
                                         "(あと"+(hueOniGame.getNumberOfFirstOni()- hueOniGame.countChasers())+"人)");
                         return;
                     }
                     sender.sendMessage("ゲームを開始します");
-                    hueOniGame.setGameState(HueOniGame.GameState.Running);
+                    hueOniGame.setGameState(GameState.Running);
                 }
                 break;
 
