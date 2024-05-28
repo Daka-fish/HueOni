@@ -27,7 +27,7 @@ public class HueOniEvent implements Listener {
                 HueOniGame hueOniGame = HueOni.getGame();
                 int currentRunners = hueOniGame.countRunners();
 
-                hueOniGame.getStateHashMap().put(damagedPlayer,PlayerState.Chaser);
+                hueOniGame.getStateHashMap().put(damagedPlayer.getName(),PlayerState.Chaser);
                 hueOniGame.getScoreBoardHashMap().get(damagedPlayer).updatePlayerState(damagedState);
                 Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners));
 
@@ -43,7 +43,7 @@ public class HueOniEvent implements Listener {
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
         HueOniGame hueOniGame = HueOni.getGame();
-        hueOniGame.getStateHashMap().put(player,PlayerState.Runner);
+        hueOniGame.getStateHashMap().put(player.getName(),PlayerState.Runner);
         HueOniScoreBoard board = new HueOniScoreBoard(player);
         player.setScoreboard(board.getBoard());
         hueOniGame.getScoreBoardHashMap().put(player,board);

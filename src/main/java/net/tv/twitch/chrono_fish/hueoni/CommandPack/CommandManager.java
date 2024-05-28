@@ -8,6 +8,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.util.Map;
+
 public class CommandManager {
     public static void hueOni(Player sender, String[] args){
         HueOniGame hueOniGame = HueOni.getGame();
@@ -38,10 +40,10 @@ public class CommandManager {
                 }
                 sender.sendMessage(oTarget.getName()+"を鬼にしました");
 
-                PlayerState currentPlayerState1 = hueOniGame.getStateHashMap().get(oTarget);
+                PlayerState currentPlayerState1 = hueOniGame.getStateHashMap().get(oTarget.getName());
                 int currentRunners1 = hueOniGame.countRunners();
 
-                hueOniGame.getStateHashMap().put(oTarget,PlayerState.Chaser);
+                hueOniGame.getStateHashMap().put(oTarget.getName(),PlayerState.Chaser);
                 hueOniGame.getScoreBoardHashMap().get(oTarget).updatePlayerState(currentPlayerState1);
                 Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners1));
                 break;
@@ -58,15 +60,18 @@ public class CommandManager {
                 }
                 sender.sendMessage(nTarget.getName()+"を逃げにしました");
 
-                PlayerState currentPlayerState2 = hueOniGame.getStateHashMap().get(nTarget);
+                PlayerState currentPlayerState2 = hueOniGame.getStateHashMap().get(nTarget.getName());
                 int currentRunners2 = hueOniGame.countRunners();
 
-                hueOniGame.getStateHashMap().put(nTarget,PlayerState.Runner);
+                hueOniGame.getStateHashMap().put(nTarget.getName(),PlayerState.Runner);
                 hueOniGame.getScoreBoardHashMap().get(nTarget).updatePlayerState(currentPlayerState2);
                 Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners2));
                 break;
 
             case "check":
+                for(Map.Entry<String, PlayerState> entry:hueOniGame.getStateHashMap().entrySet()){
+                    sender.sendMessage(entry.getKey()+" : "+entry.getValue().getName());
+                }
                 break;
         }
     }

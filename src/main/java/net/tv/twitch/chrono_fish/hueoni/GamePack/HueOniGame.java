@@ -11,7 +11,7 @@ import java.util.Map;
 public class HueOniGame {
 
     private GameState gameState;
-    private final HashMap<Player, PlayerState> stateHashMap;
+    private final HashMap<String, PlayerState> stateHashMap;
     private final HashMap<Player, HueOniScoreBoard> scoreBoardHashMap;
 
     public HueOniGame(){
@@ -26,14 +26,14 @@ public class HueOniGame {
 
     public int countRunners(){
         int count = 0;
-        for(Map.Entry<Player,PlayerState> entry : stateHashMap.entrySet()){
-            if(entry.getValue().equals(PlayerState.Chaser)) count += 1;
+        for(Map.Entry<String,PlayerState> entry : stateHashMap.entrySet()){
+            if(entry.getValue().equals(PlayerState.Runner)) count += 1;
         }
         return count;
     }
     public int countChasers(){
         int count = 0;
-        for(Map.Entry<Player,PlayerState> entry : stateHashMap.entrySet()){
+        for(Map.Entry<String,PlayerState> entry : stateHashMap.entrySet()){
             if(entry.getValue().equals(PlayerState.Chaser)) count += 1;
         }
         return count;
@@ -46,7 +46,7 @@ public class HueOniGame {
         return gameState;
     }
 
-    public HashMap<Player, PlayerState> getStateHashMap() {
+    public HashMap<String, PlayerState> getStateHashMap() {
         return stateHashMap;
     }
 
