@@ -1,5 +1,6 @@
 package net.tv.twitch.chrono_fish.hueoni.GamePack;
 
+import net.tv.twitch.chrono_fish.hueoni.HueOniScoreBoard;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -12,11 +13,13 @@ public class HueOniGame {
     }
 
     private GameState gameState;
-    private HashMap<Player,PlayerState> map;
+    private HashMap<Player,PlayerState> stateHashMap;
+    private static HashMap<Player, HueOniScoreBoard> scoreBoardHashMap;
 
     public HueOniGame(){
         this.gameState = GameState.Finished;
-        map = new HashMap<>();
+        stateHashMap = new HashMap<>();
+        scoreBoardHashMap = new HashMap<>();
     }
 
     public int getNumberOfFirstOni() {
@@ -25,14 +28,14 @@ public class HueOniGame {
 
     public int countRunners(){
         int count = 0;
-        for(Map.Entry<Player,PlayerState> entry : map.entrySet()){
+        for(Map.Entry<Player,PlayerState> entry : stateHashMap.entrySet()){
             if(entry.getValue().equals(PlayerState.Chaser)) count += 1;
         }
         return count;
     }
     public int countChasers(){
         int count = 0;
-        for(Map.Entry<Player,PlayerState> entry : map.entrySet()){
+        for(Map.Entry<Player,PlayerState> entry : stateHashMap.entrySet()){
             if(entry.getValue().equals(PlayerState.Chaser)) count += 1;
         }
         return count;
@@ -45,7 +48,11 @@ public class HueOniGame {
         return gameState;
     }
 
-    public HashMap<Player, PlayerState> getMap() {
-        return map;
+    public HashMap<Player, PlayerState> getStateHashMap() {
+        return stateHashMap;
+    }
+
+    public HashMap<Player, HueOniScoreBoard> getScoreBoardHashMap() {
+        return scoreBoardHashMap;
     }
 }
