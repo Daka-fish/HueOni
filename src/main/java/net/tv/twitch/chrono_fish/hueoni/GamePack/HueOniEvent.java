@@ -22,9 +22,13 @@ public class HueOniEvent implements Listener {
 
             if(damagerState.equals(PlayerState.Chaser) && damagedState.equals(PlayerState.Runner)){
                 Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(damagedPlayer.getName()+"が捕まりました"));
-                HueOni.getGame().getMap().put(damagedPlayer,PlayerState.Chaser);
-                HueOni.getScoreMap().get(damagedPlayer).updateAllScore();
-                HueOni.getScoreMap().get(damagerPlayer).updateRunners();
+                HueOniGame hueOniGame = HueOni.getGame();
+                int currentRunners = hueOniGame.countRunners();
+
+                hueOniGame.getStateHashMap().put(damagedPlayer,PlayerState.Chaser);
+                hueOniGame.getScoreBoardHashMap().get(damagedPlayer).updateState(damagedState);
+                Bukkit.getOnlinePlayers().forEach(
+                        player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners));
 
                 if(HueOni.getGame().countRunners()==0){
                     Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage("ゲーム終了!"));
@@ -37,13 +41,14 @@ public class HueOniEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
-        HueOni.getGame().getMap().put(player,PlayerState.Runner);
+        HueOniGame hueOniGame = HueOni.getGame();
+        hueOniGame.getStateHashMap().put(player,PlayerState.Runner);
         HueOniScoreBoard board = new HueOniScoreBoard(player);
         player.setScoreboard(board.getBoard());
-        HueOni.getScoreMap().put(player,board);
+        hueOniGame.getScoreBoardHashMap().put(player,board);
     }
 
     public PlayerState getPlayerState(Player player){
-        return HueOni.getGame().getMap().get(player);
+        return HueOni.getGame().getStateHashMap().get(player);
     }
 }
