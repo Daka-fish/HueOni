@@ -13,7 +13,8 @@ public class CommandManager {
         HueOniGame hueOniGame = HueOni.getGame();
         switch(args[0]){
             case "start":
-                if(hueOniGame.getGameState().equals(GameState.Finished)){
+                GameState currentgameState = hueOniGame.getGameState();
+                if(currentgameState.equals(GameState.Finished)){
                     if(hueOniGame.countChasers() < 2){
                         sender.sendMessage(ChatColor.RED+"鬼の数が足りません" +
                                         "(あと"+(hueOniGame.getNumberOfFirstOni()- hueOniGame.countChasers())+"人)");
@@ -21,6 +22,7 @@ public class CommandManager {
                     }
                     sender.sendMessage("ゲームを開始します");
                     hueOniGame.setGameState(GameState.Running);
+                    Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateGameState(currentgameState));
                 }
                 break;
 
@@ -35,10 +37,12 @@ public class CommandManager {
                     return;
                 }
                 sender.sendMessage(oTarget.getName()+"を鬼にしました");
+
                 PlayerState currentPlayerState1 = hueOniGame.getStateHashMap().get(oTarget);
                 int currentRunners1 = hueOniGame.countRunners();
+
                 hueOniGame.getStateHashMap().put(oTarget,PlayerState.Chaser);
-                hueOniGame.getScoreBoardHashMap().get(oTarget).updateState(currentPlayerState1);
+                hueOniGame.getScoreBoardHashMap().get(oTarget).updatePlayerState(currentPlayerState1);
                 Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners1));
                 break;
 
@@ -58,7 +62,7 @@ public class CommandManager {
                 int currentRunners2 = hueOniGame.countRunners();
 
                 hueOniGame.getStateHashMap().put(nTarget,PlayerState.Runner);
-                hueOniGame.getScoreBoardHashMap().get(nTarget).updateState(currentPlayerState2);
+                hueOniGame.getScoreBoardHashMap().get(nTarget).updatePlayerState(currentPlayerState2);
                 Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners2));
                 break;
 

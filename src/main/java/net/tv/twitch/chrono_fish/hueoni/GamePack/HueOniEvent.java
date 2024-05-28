@@ -28,9 +28,8 @@ public class HueOniEvent implements Listener {
                 int currentRunners = hueOniGame.countRunners();
 
                 hueOniGame.getStateHashMap().put(damagedPlayer,PlayerState.Chaser);
-                hueOniGame.getScoreBoardHashMap().get(damagedPlayer).updateState(damagedState);
-                Bukkit.getOnlinePlayers().forEach(
-                        player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners));
+                hueOniGame.getScoreBoardHashMap().get(damagedPlayer).updatePlayerState(damagedState);
+                Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners));
 
                 if(HueOni.getGame().countRunners()==0){
                     Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage("ゲーム終了!"));
