@@ -34,8 +34,11 @@ public class CommandManager {
                     return;
                 }
                 sender.sendMessage(oTarget.getName()+"を鬼にしました");
-                hueOniGame.getMap().put(oTarget,PlayerState.Chaser);
-                HueOni.getScoreMap().get(oTarget).updateAllScore();
+                PlayerState currentPlayerState1 = hueOniGame.getStateHashMap().get(oTarget);
+                int currentRunners1 = hueOniGame.countRunners();
+                hueOniGame.getStateHashMap().put(oTarget,PlayerState.Chaser);
+                hueOniGame.getScoreBoardHashMap().get(oTarget).updateState(currentPlayerState1);
+                Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners1));
                 break;
 
             case "nige":
@@ -49,8 +52,13 @@ public class CommandManager {
                     return;
                 }
                 sender.sendMessage(nTarget.getName()+"を逃げにしました");
-                hueOniGame.getMap().put(nTarget,PlayerState.Runner);
-                HueOni.getScoreMap().get(nTarget).updateAllScore();
+
+                PlayerState currentPlayerState2 = hueOniGame.getStateHashMap().get(nTarget);
+                int currentRunners2 = hueOniGame.countRunners();
+
+                hueOniGame.getStateHashMap().put(nTarget,PlayerState.Runner);
+                hueOniGame.getScoreBoardHashMap().get(nTarget).updateState(currentPlayerState2);
+                Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateRunners(currentRunners2));
                 break;
 
             case "check":
