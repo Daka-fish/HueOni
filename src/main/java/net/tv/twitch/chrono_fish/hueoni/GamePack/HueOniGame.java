@@ -13,8 +13,8 @@ public class HueOniGame {
     }
 
     private GameState gameState;
-    private HashMap<Player,PlayerState> stateHashMap;
-    private static HashMap<Player, HueOniScoreBoard> scoreBoardHashMap;
+    private final HashMap<Player,PlayerState> stateHashMap;
+    private final HashMap<Player, HueOniScoreBoard> scoreBoardHashMap;
 
     public HueOniGame(){
         this.gameState = GameState.Finished;
