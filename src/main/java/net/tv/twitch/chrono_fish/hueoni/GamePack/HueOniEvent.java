@@ -43,10 +43,12 @@ public class HueOniEvent implements Listener {
     public void onJoin(PlayerJoinEvent e){
         Player player = e.getPlayer();
         HueOniGame hueOniGame = HueOni.getGame();
+        int currentRunners = hueOniGame.countRunners();
         hueOniGame.getStateHashMap().put(player.getName(),PlayerState.Runner);
         HueOniScoreBoard board = new HueOniScoreBoard(player);
         player.setScoreboard(board.getBoard());
         hueOniGame.getScoreBoardHashMap().put(player,board);
+        Bukkit.getOnlinePlayers().forEach(player1 -> hueOniGame.getScoreBoardHashMap().get(player1).updateRunners(currentRunners));
     }
 
     public PlayerState getPlayerState(Player player){
