@@ -38,7 +38,7 @@ public class CommandManager {
                     sender.sendMessage(ChatColor.RED+args[1]+"が見つかりません!");
                     return;
                 }
-                sender.sendMessage(oTarget.getName()+"を鬼にしました");
+                sender.sendMessage(ChatColor.YELLOW+oTarget.getName()+ChatColor.RESET+"を鬼にしました");
 
                 PlayerState currentPlayerState1 = hueOniGame.getStateHashMap().get(oTarget.getName());
                 int currentRunners1 = hueOniGame.countRunners();
@@ -58,7 +58,7 @@ public class CommandManager {
                     sender.sendMessage(ChatColor.RED+args[1]+"が見つかりません!");
                     return;
                 }
-                sender.sendMessage(nTarget.getName()+"を逃げにしました");
+                sender.sendMessage(ChatColor.YELLOW+nTarget.getName()+ChatColor.RESET+"を逃げにしました");
 
                 PlayerState currentPlayerState2 = hueOniGame.getStateHashMap().get(nTarget.getName());
                 int currentRunners2 = hueOniGame.countRunners();
@@ -70,7 +70,7 @@ public class CommandManager {
 
             case "check":
                 for(Map.Entry<String, PlayerState> entry:hueOniGame.getStateHashMap().entrySet()){
-                    sender.sendMessage(entry.getKey()+" : "+entry.getValue().getName());
+                    sender.sendMessage(ChatColor.YELLOW+entry.getKey()+ChatColor.RESET+" : "+entry.getValue().getName());
                 }
                 break;
         }
