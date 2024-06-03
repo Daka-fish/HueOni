@@ -52,6 +52,6 @@ public class HueOniEvent implements Listener {
     }
 
     public PlayerState getPlayerState(Player player){
-        return HueOni.getGame().getStateHashMap().get(player);
+        return HueOni.getGame().getStateHashMap().get(player.getName());
     }
 }
