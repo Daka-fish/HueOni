@@ -69,7 +69,7 @@ public class HueOniScoreBoard {
 
     public void updateTime(int currentTime){
         board.resetScores("   └ 残り"+ChatColor.YELLOW+currentTime+ChatColor.RESET+"秒");
-        obj.getScore("   └ 残り"+HueOni.getGame().getTime()+ChatColor.RESET+"秒").setScore(-8);
+        obj.getScore("   └ 残り"+ChatColor.YELLOW+HueOni.getGame().getTime()+ChatColor.RESET+"秒").setScore(-8);
     }
 
     public void updatePlayerState(PlayerState currentplayerState){
