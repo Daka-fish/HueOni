@@ -4,6 +4,7 @@ import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
 import net.tv.twitch.chrono_fish.hueoni.State.GameState;
 import net.tv.twitch.chrono_fish.hueoni.State.PlayerState;
 import net.tv.twitch.chrono_fish.hueoni.HueOni;
+import net.tv.twitch.chrono_fish.hueoni.TimeManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -71,6 +72,25 @@ public class CommandManager {
             case "check":
                 for(Map.Entry<String, PlayerState> entry:hueOniGame.getStateHashMap().entrySet()){
                     sender.sendMessage(ChatColor.YELLOW+entry.getKey()+ChatColor.RESET+" : "+entry.getValue().getName());
+                }
+                break;
+
+            case "time":
+                if(args.length == 1){
+                    sender.sendMessage("現在の設定されている制限時間"+ChatColor.GREEN+hueOniGame.getTime());
+                }
+                if(args[1].equalsIgnoreCase("start")){
+                    new TimeManager().runTaskTimer(HueOni.getInstance(),0L,20L);
+                }
+                if(args[1].equalsIgnoreCase("set")){
+                    try{
+                        int currentTime = hueOniGame.getTime();
+                        HueOni.getGame().setTime(Integer.parseInt(args[2]));
+                        Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateTime(currentTime));
+                    } catch (Exception e) {
+                        sender.sendMessage(ChatColor.RED+"数字を入れてください");
+                        throw new RuntimeException(e);
+                    }
                 }
                 break;
         }
