@@ -10,11 +10,13 @@ import java.util.Map;
 
 public class HueOniGame {
 
+    private int time;
     private GameState gameState;
     private final HashMap<String, PlayerState> stateHashMap;
     private final HashMap<Player, HueOniScoreBoard> scoreBoardHashMap;
 
     public HueOniGame(){
+        this.time = 100;
         this.gameState = GameState.Finished;
         stateHashMap = new HashMap<>();
         scoreBoardHashMap = new HashMap<>();
@@ -39,6 +41,13 @@ public class HueOniGame {
         return count;
     }
 
+    public void setTime(int time){
+        this.time = time;
+    }
+    public int getTime(){
+        return time;
+    }
+
     public void setGameState(GameState gameState) {
         this.gameState = gameState;
     }
@@ -49,7 +58,6 @@ public class HueOniGame {
     public HashMap<String, PlayerState> getStateHashMap() {
         return stateHashMap;
     }
-
     public HashMap<Player, HueOniScoreBoard> getScoreBoardHashMap() {
         return scoreBoardHashMap;
     }
