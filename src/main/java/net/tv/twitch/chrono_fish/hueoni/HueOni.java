@@ -8,9 +8,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class HueOni extends JavaPlugin {
 
     private static HueOniGame hueOniGame;
+    private static HueOni instance;
 
     @Override
     public void onEnable() {
+        instance = this;
         hueOniGame = new HueOniGame();
         getCommand("hueOni").setExecutor(new HueOniCommands());
         getServer().getPluginManager().registerEvents(new HueOniEvent(),this);
@@ -18,5 +20,8 @@ public final class HueOni extends JavaPlugin {
 
     public static HueOniGame getGame(){
         return hueOniGame;
+    }
+    public static HueOni getInstance(){
+        return instance;
     }
 }
