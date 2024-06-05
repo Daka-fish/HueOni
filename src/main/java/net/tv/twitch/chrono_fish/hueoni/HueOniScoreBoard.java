@@ -40,11 +40,11 @@ public class HueOniScoreBoard {
         objective.getScore(gameState).setScore(-1);
         objective.getScore("   └ "+hueOniGame.getGameState().getName()).setScore(-2);
 
-        objective.getScore(timer).setScore(-4);
-        objective.getScore("   └ ???").setScore(-5);
+        objective.getScore(yourState).setScore(-4);
+        objective.getScore("   └ " + hueOniGame.getStateHashMap().get(player.getName()).getName()).setScore(-5);
 
-        objective.getScore(yourState).setScore(-7);
-        objective.getScore("   └ " + hueOniGame.getStateHashMap().get(player.getName()).getName()).setScore(-8);
+        objective.getScore(timer).setScore(-7);
+        objective.getScore("   └ 残り"+ChatColor.YELLOW+hueOniGame.getTime()+ChatColor.RESET+"秒").setScore(-8);
 
         objective.getScore(remainRunners).setScore(-10);
         objective.getScore("   └ 残り" + hueOniGame.countRunners() + "人").setScore(-11);
@@ -67,9 +67,14 @@ public class HueOniScoreBoard {
         obj.getScore("   └ "+HueOni.getGame().getGameState().getName()).setScore(-2);
     }
 
+    public void updateTime(int currentTime){
+        board.resetScores("   └ 残り"+ChatColor.YELLOW+currentTime+ChatColor.RESET+"秒");
+        obj.getScore("   └ 残り"+HueOni.getGame().getTime()+ChatColor.RESET+"秒").setScore(-8);
+    }
+
     public void updatePlayerState(PlayerState currentplayerState){
         board.resetScores("   └ " + currentplayerState.getName());
-        obj.getScore("   └ " + HueOni.getGame().getStateHashMap().get(player.getName()).getName()).setScore(-8);
+        obj.getScore("   └ " + HueOni.getGame().getStateHashMap().get(player.getName()).getName()).setScore(-5);
     }
 
     public void updateRunners(int currentRunners){
