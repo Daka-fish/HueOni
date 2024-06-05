@@ -78,9 +78,11 @@ public class CommandManager {
             case "time":
                 if(args.length == 1){
                     sender.sendMessage("現在の設定されている制限時間"+ChatColor.GREEN+hueOniGame.getTime());
+                    return;
                 }
                 if(args[1].equalsIgnoreCase("start")){
                     new TimeManager().runTaskTimer(HueOni.getInstance(),0L,20L);
+                    return;
                 }
                 if(args[1].equalsIgnoreCase("set")){
                     try{
@@ -91,6 +93,7 @@ public class CommandManager {
                         sender.sendMessage(ChatColor.RED+"数字を入れてください");
                         throw new RuntimeException(e);
                     }
+                    return;
                 }
                 break;
         }
