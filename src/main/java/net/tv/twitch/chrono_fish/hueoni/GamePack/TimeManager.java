@@ -1,6 +1,6 @@
-package net.tv.twitch.chrono_fish.hueoni;
+package net.tv.twitch.chrono_fish.hueoni.GamePack;
 
-import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
+import net.tv.twitch.chrono_fish.hueoni.HueOni;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 

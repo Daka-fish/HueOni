@@ -4,7 +4,7 @@ import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
 import net.tv.twitch.chrono_fish.hueoni.State.GameState;
 import net.tv.twitch.chrono_fish.hueoni.State.PlayerState;
 import net.tv.twitch.chrono_fish.hueoni.HueOni;
-import net.tv.twitch.chrono_fish.hueoni.TimeManager;
+import net.tv.twitch.chrono_fish.hueoni.GamePack.TimeManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
