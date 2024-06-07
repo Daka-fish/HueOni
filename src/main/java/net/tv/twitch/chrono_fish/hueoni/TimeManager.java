@@ -18,9 +18,14 @@ public class TimeManager extends BukkitRunnable {
 
         if(currentTime==0){
             cancel();
-            Bukkit.broadcastMessage("終了!");
             hueOniGame.setTime(100);
             Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateTime(currentTime));
+            if(hueOniGame.countRunners()>=0){
+                Bukkit.broadcastMessage("逃げの勝ち!");
+                return;
+            }else{
+                Bukkit.broadcastMessage("鬼の勝ち!");
+            }
             return;
         }
 
