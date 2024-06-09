@@ -77,7 +77,7 @@ public class CommandManager {
 
             case "time":
                 if(args.length == 1){
-                    sender.sendMessage("現在の設定されている制限時間"+ChatColor.GREEN+hueOniGame.getTime());
+                    sender.sendMessage("設定されている制限時間："+ChatColor.GREEN+hueOniGame.getTime()+ChatColor.RESET+"秒");
                     return;
                 }
                 if(args[1].equalsIgnoreCase("start")){
@@ -89,6 +89,7 @@ public class CommandManager {
                         int currentTime = hueOniGame.getTime();
                         HueOni.getGame().setTime(Integer.parseInt(args[2]));
                         Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateTime(currentTime));
+                        sender.sendMessage("制限時間を"+ChatColor.GREEN+args[2]+ChatColor.RESET+"秒に設定しました");
                     } catch (Exception e) {
                         sender.sendMessage(ChatColor.RED+"数字を入れてください");
                         throw new RuntimeException(e);
