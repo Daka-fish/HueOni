@@ -81,6 +81,7 @@ public class CommandManager {
                     return;
                 }
                 if(args[1].equalsIgnoreCase("start")){
+                    sender.sendMessage("タイマーを開始しました");
                     new TimeManager().runTaskTimer(HueOni.getInstance(),0L,20L);
                     return;
                 }
