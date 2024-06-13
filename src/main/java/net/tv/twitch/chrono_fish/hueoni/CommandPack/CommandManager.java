@@ -26,6 +26,9 @@ public class CommandManager {
                     sender.sendMessage("ゲームを開始します");
                     hueOniGame.setGameState(GameState.Running);
                     Bukkit.getOnlinePlayers().forEach(player -> hueOniGame.getScoreBoardHashMap().get(player).updateGameState(currentgameState));
+
+                    new TimeManager().runTaskTimer(HueOni.getInstance(),0L,20L);
+                    return;
                 }
                 break;
 
@@ -78,11 +81,6 @@ public class CommandManager {
             case "time":
                 if(args.length == 1){
                     sender.sendMessage("設定されている制限時間："+ChatColor.GREEN+hueOniGame.getTime()+ChatColor.RESET+"秒");
-                    return;
-                }
-                if(args[1].equalsIgnoreCase("start")){
-                    sender.sendMessage("タイマーを開始しました");
-                    new TimeManager().runTaskTimer(HueOni.getInstance(),0L,20L);
                     return;
                 }
                 if(args[1].equalsIgnoreCase("set")){
