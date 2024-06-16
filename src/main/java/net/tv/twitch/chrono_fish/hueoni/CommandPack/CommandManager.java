@@ -1,6 +1,7 @@
 package net.tv.twitch.chrono_fish.hueoni.CommandPack;
 
 import net.tv.twitch.chrono_fish.hueoni.GamePack.HueOniGame;
+import net.tv.twitch.chrono_fish.hueoni.ItemPack.ItemManager;
 import net.tv.twitch.chrono_fish.hueoni.State.GameState;
 import net.tv.twitch.chrono_fish.hueoni.State.PlayerState;
 import net.tv.twitch.chrono_fish.hueoni.HueOni;
@@ -43,6 +44,7 @@ public class CommandManager {
                     return;
                 }
                 sender.sendMessage(ChatColor.YELLOW+oTarget.getName()+ChatColor.RESET+"を鬼にしました");
+                oTarget.getInventory().addItem(HueOni.getItemManager().getItemMap().get("stick").getItemStack());
 
                 PlayerState currentPlayerState1 = hueOniGame.getStateHashMap().get(oTarget.getName());
                 int currentRunners1 = hueOniGame.countRunners();
